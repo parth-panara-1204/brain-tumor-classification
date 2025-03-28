@@ -1,69 +1,249 @@
+/* General Styles */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
+    background-color: #f9f9f9;
     color: #333;
 }
 
-header {
-    background-color: #007BFF;
-    color: white;
-    padding: 1rem;
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Header */
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-header .logo img {
-    height: 50px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-}
-
-nav ul li a {
+    padding: 10px 20px;
+    background-color: #4CAF50;
     color: white;
-    text-decoration: none;
 }
 
+.logo img {
+    max-height: 50px;
+}
+
+.navbar ul {
+    display: flex;
+    gap: 15px;
+}
+
+.navbar ul li a {
+    font-weight: bold;
+    color: white;
+}
+
+.navbar ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section */
 .hero {
+    background: linear-gradient(to right, #4CAF50, #81C784);
+    color: white;
     text-align: center;
-    padding: 5rem 2rem;
-    background-color: #e9ecef;
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
 }
 
 .cta {
-    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
-.btn-primary, .btn-secondary {
-    padding: 0.75rem 1.5rem;
-    border: none;
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
 }
 
 .btn-primary {
-    background-color: #007BFF;
-    color: white;
+    background-color: #ffffff;
+    color: #4CAF50;
+    border: 2px solid #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #f1f1f1;
 }
 
 .btn-secondary {
-    background-color: #6c757d;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 20px;
+}
+
+/* Upload Section (Specific to upload.html) */
+.upload-section {
+    padding: 20px;
+    background-color: white;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.upload-section h2 {
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+.upload-instructions {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.upload-zone {
+    position: relative;
+    border: 2px dashed #4CAF50;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.upload-zone input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.upload-zone label {
+    font-size: 1rem;
+    color: #4CAF50;
+    display: block;
+    cursor: pointer;
+}
+
+.upload-zone:hover {
+    background-color: #e8f5e9;
+}
+
+.upload-status {
+    font-size: 1rem;
+    margin-top: 10px;
+    color: green; /* Default color for success */
+}
+
+/* Results Section (Specific to results.html) */
+.results-section {
+    padding: 20px;
+    background-color: white;
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.results-section h2 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.result {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.result p {
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
+.result ul {
+    list-style: disc;
+    margin-left: 20px;
+    padding-left: 20px;
+}
+
+.mri-image {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Actions Section */
+.actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.actions .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.actions .btn-primary {
+    background-color: #4CAF50;
     color: white;
 }
 
-footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #007BFF;
+.actions .btn-primary:hover {
+    background-color: #45a049;
+}
+
+.actions .btn-secondary {
+    background-color: #f44336;
     color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+}
+
+.actions .btn-secondary:hover {
+    background-color: #e53935;
 }

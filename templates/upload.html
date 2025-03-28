@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <header>
+    <header class="header">
         <div class="logo">
             <img src="{{ url_for('static', filename='images/logo.png') }}" alt="BrainScan AI Logo">
         </div>
-        <nav>
+        <nav class="navbar">
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/upload">Upload MRI</a></li>
@@ -22,19 +22,71 @@
         </nav>
     </header>
 
-    <section class="upload-section">
-        <h2>Upload Your MRI Scan</h2>
-        <form id="upload-form" action="/analyze" method="POST" enctype="multipart/form-data">
-            <div class="upload-zone">
-                <input type="file" id="mri-file" name="mri-file" accept=".jpg,.jpeg,.png,.dicom" required>
-                <label for="mri-file">Drag your MRI file here or click to upload.</label>
-            </div>
-            <button type="submit" class="btn-primary">Analyze Scan</button>
-        </form>
-    </section>
+    <main>
+        <section class="upload-section">
+            <h2>Upload Your MRI Scan</h2>
+            <p class="upload-instructions">Upload your MRI scan in JPG, PNG, or DICOM format to analyze for potential brain tumors.</p>
+            <form id="upload-form" action="/analyze" method="POST" enctype="multipart/form-data">
+                <div class="upload-zone">
+                    <input type="file" id="mri-file" name="mri-file" accept=".jpg,.jpeg,.png,.dicom" required>
+                    <label for="mri-file">Drag your MRI file here or click to upload.</label>
+                </div>
+                <p id="upload-status" class="upload-status"></p> <!-- Status message -->
+                <button type="submit" class="btn btn-primary">Analyze Scan</button>
+            </form>
+        </section>
+    </main>
 
-    <footer>
+    <footer class="footer">
         <p>&copy; 2023 BrainScan AI. All rights reserved.</p>
     </footer>
+
+    <!-- JavaScript for Drag-and-Drop -->
+    <script>
+        const uploadZone = document.getElementById('upload-zone');
+        const fileInput = document.getElementById('mri-file');
+        const uploadStatus = document.getElementById('upload-status');
+
+        // Prevent default behavior for drag-and-drop events
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadZone.addEventListener(eventName, e => e.preventDefault());
+            uploadZone.addEventListener(eventName, e => e.stopPropagation());
+        });
+
+        // Highlight the upload zone on dragover
+        uploadZone.addEventListener('dragover', () => {
+            uploadZone.classList.add('dragover');
+        });
+
+        // Remove highlight on dragleave or drop
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('dragover');
+        });
+        uploadZone.addEventListener('drop', () => {
+            uploadZone.classList.remove('dragover');
+        });
+
+        // Handle file drop
+        uploadZone.addEventListener('drop', e => {
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files; // Assign dropped files to the file input
+                showUploadStatus(files[0].name); // Show verification message
+            }
+        });
+
+        // Handle file selection via input
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                showUploadStatus(fileInput.files[0].name); // Show verification message
+            }
+        });
+
+        // Function to show upload verification message
+        function showUploadStatus(fileName) {
+            uploadStatus.textContent = `File "${fileName}" uploaded successfully. You can now analyze the image.`;
+            uploadStatus.style.color = 'green';
+        }
+    </script>
 </body>
 </html>
